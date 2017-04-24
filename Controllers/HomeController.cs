@@ -1,6 +1,8 @@
-﻿using IdentityServer4.Services;
+﻿using IdentityServer4;
+using IdentityServer4.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using SSO_CORE.Models;
 
 namespace SSO_CORE.Controllers
 {

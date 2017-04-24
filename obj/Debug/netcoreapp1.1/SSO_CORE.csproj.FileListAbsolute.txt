@@ -1,0 +1,8 @@
+/Users/wxs8239/dev/workspaces/SSO_CORE/bin/Debug/netcoreapp1.1/SSO_CORE.deps.json
+/Users/wxs8239/dev/workspaces/SSO_CORE/bin/Debug/netcoreapp1.1/SSO_CORE.runtimeconfig.json
+/Users/wxs8239/dev/workspaces/SSO_CORE/bin/Debug/netcoreapp1.1/SSO_CORE.runtimeconfig.dev.json
+/Users/wxs8239/dev/workspaces/SSO_CORE/obj/Debug/netcoreapp1.1/SSO_CORE.AssemblyInfo.cs
+/Users/wxs8239/dev/workspaces/SSO_CORE/bin/Debug/netcoreapp1.1/SSO_CORE.dll
+/Users/wxs8239/dev/workspaces/SSO_CORE/bin/Debug/netcoreapp1.1/SSO_CORE.pdb
+/Users/wxs8239/dev/workspaces/SSO_CORE/obj/Debug/netcoreapp1.1/SSO_CORE.dll
+/Users/wxs8239/dev/workspaces/SSO_CORE/obj/Debug/netcoreapp1.1/SSO_CORE.pdb

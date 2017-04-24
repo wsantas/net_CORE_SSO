@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using IdentityServer4;
 
 namespace SSO_CORE
 {
@@ -29,6 +32,12 @@ namespace SSO_CORE
         {
             // Add framework services.
             services.AddMvc();
+
+            // configure identity server with in-memory stores, keys, clients and scopes
+            services.AddIdentityServer()
+                .AddTemporarySigningCredential()
+                .AddInMemoryApiResources(Config.GetApiResources())
+                .AddInMemoryClients(Config.GetClients());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,28 +70,15 @@ namespace SSO_CORE
             // middleware for external openid connect authentication
             app.UseOpenIdConnectAuthentication(new OpenIdConnectOptions
             {
-                SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme,
-                SignOutScheme = IdentityServerConstants.SignoutScheme,
-
-                DisplayName = "OpenID Connect",
-                Authority = "https://demo.identityserver.io/",
-                ClientId = "implicit",
-                    
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                }
+                ClientId = Configuration["ClientId"],
+                ClientSecret = Configuration["ClientSecret"],
+                Authority = Configuration["Authority"],
+                ResponseType = OpenIdConnectResponseType.Code,
+                GetClaimsFromUserInfoEndpoint = true
             });
 
             app.UseStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
